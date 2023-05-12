@@ -92,7 +92,7 @@
             baseURL:config.public.apiBase,
         })
 
-        console.log("response",configResponse.value)
+        console.log("response",configResponse.value)    
 
         isLoading.value = pending.value
     })

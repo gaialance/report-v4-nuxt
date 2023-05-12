@@ -22,7 +22,11 @@ pnpm install
 Start the development server on `http://localhost:3000`
 
 ```bash
-npm run dev
+npm run dev -o
+```
+
+```bash
+yarn run dev -o
 ```
 
 ## Production
