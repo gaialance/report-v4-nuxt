@@ -3,8 +3,11 @@ import { DateTime } from 'luxon';
 import { defineStore } from 'pinia';
 
 export const useReportFilterStore = defineStore(storeKey, () => {
+  // variables
   const timeFormat: string = 'HH:mm';
   const dateFormat: string = 'dd/M/yyyy';
+  
+  // functions
   const startDateTime = computed<Date>(() => DateTime.now().startOf('day').toJSDate());
   const endDateTime = computed<Date>(() => DateTime.now().endOf('day').toJSDate());
   const dates = ref<Date[]>([startDateTime.value, endDateTime.value]);

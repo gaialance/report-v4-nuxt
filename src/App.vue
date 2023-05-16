@@ -76,3 +76,7 @@
     --dp-highlight-color: #212121 !important;
   }
 </style>
+
+<script setup lang="ts">
+  const nuxtApp = useNuxtApp()
+</script>

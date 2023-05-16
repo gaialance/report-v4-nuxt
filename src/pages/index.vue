@@ -59,43 +59,38 @@
             </Widget>
         </div>
     </div>
-    <div v-for="object in data">
+    <div v-for="object in schemaConfig">
         {{ object }}
     </div>
 </template>
 
 <script setup lang="ts">
-    import { Schema } from '~/src/types/schema'
-    import { nextTick } from 'vue'
+    import { useRoute } from 'nuxt/app';
+    import { Schema } from '~/types/report/schema';
+    import { useQueryStore } from '~/stores/query';
+    import { Report } from '~/types/report/report';
+    import apiService from '~/api';
+import { getSchema } from '~/api/schemas';
 
-    const config = useRuntimeConfig();
+    const queryStore = useQueryStore()
     
-    const list = [1,2,3,4,5,6,7,8]
-    const list2 = [1,2]
+    // fetch the token from the url
+    const route = useRoute()
+    
+    // set the token to store so other pages can use
+    queryStore.setupToken(route.query.token ? route.query.token as string : '')
+    queryStore.setupBusinessId(route.query.businessId ? route.query.businessId as string : '') 
 
-    const data = ref()  
-    const isLoading = ref<boolean>(false)
-    watch(isLoading,()=>{
-        console.log("loading",isLoading.value)
-    })
+    // Fetch Schema config
+    const schemaConfig = ref<Schema[]>([])
 
-    onMounted(async ()=>{
-        const token = window.localStorage.getItem('token') as string
-        
-        await nextTick()
+    schemaConfig.value = await getSchema()
 
-        const { data:configResponse, pending , error , refresh } = await useFetch('/schemas',{
-            method: 'get',
-            headers:{
-                Authorization: `Bearer ${token}`
-            },
-            baseURL:config.public.apiBase,
-        })
+    console.log(schemaConfig.value)
 
-        console.log("response",configResponse.value)    
+    // Fetch reports config
+    const reportConfig = ref<Report[]>()
 
-        isLoading.value = pending.value
-    })
 </script>
 
 <style lang="scss" scoped>

@@ -24,6 +24,7 @@ export default defineNuxtPlugin(nuxtApp => {
                 myCustomLightTheme
             }
         },
+        ssr:false,
         components,
         directives,
     })

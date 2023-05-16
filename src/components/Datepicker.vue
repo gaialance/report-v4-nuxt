@@ -32,8 +32,8 @@ import {DateTime} from 'luxon'
 import { storeToRefs } from 'pinia';
 
 // internal lib
-import { useReportFilterStore } from '~/src/stores/reportfilters';
-import { PresetRange} from '~/src/types/types'
+import { useReportFilterStore } from '~/stores/reportfilters';
+import { PresetRange} from '~/types/types'
 
 // variable
 const emits = defineEmits(['confirmSelectedPicker']);
