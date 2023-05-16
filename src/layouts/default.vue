@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <Sidebar v-bind:isExpanded="isExpanded"/>
+        <SidebarTemplate v-bind:isExpanded="isExpanded"/>
         <v-main>
             <v-container>
                 <v-card elevation="20">
@@ -24,6 +24,17 @@
 
 <script setup lang="ts">
     import { ref } from 'vue'
+    import { useQueryStore } from '~/stores/query'
+
+    // set the token at layout
+    const queryStore = useQueryStore()
+
+    // fetch the token from the url
+    const route = useRoute()
+
+    // set the token to store so other pages can use
+    queryStore.setupToken(route.query.token ? route.query.token as string : '')
+    queryStore.setupBusinessId(route.query.businessId ? route.query.businessId as string : '') 
 
     // reactive State
     const isExpanded = ref(false)

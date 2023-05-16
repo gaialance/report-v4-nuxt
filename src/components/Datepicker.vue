@@ -76,18 +76,9 @@ const formatDateTime = (date: Date | null) => {
 </script>
 
 <style lang="scss" scoped>
-    .orange-text{
-        color:#EE8434;
-    }
     .left-sidebar{
         text-align: center;
         width: 150px;
-    }
-
-    .orange-text:hover{
-        color: white;
-        background: #EE8434;
-        cursor: pointer;
     }
 
     .preview{

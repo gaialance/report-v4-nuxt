@@ -1,11 +1,14 @@
+import { FetchConfig, FetchType } from "~/plugins/axios.client"
 import { useQueryStore } from "~/stores/query"
-import { Schema } from "~/types/report/schema"
-import apiService,{ FetchConfig,FetchType } from "~/utils/axios"
+import { Schema } from "~/types/schema"
 
 export const getSchema = ():Promise<Schema[]> => {
+
     const config:FetchConfig = {
         fetchType: FetchType.Get,
         url:'/schemas'
     }
-    return apiService.fetch<Schema[]>(config)
+
+    // use library from plugin
+    return useNuxtApp().$apiService<Schema[]>(config)
 }

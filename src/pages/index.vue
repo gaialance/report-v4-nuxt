@@ -59,37 +59,24 @@
             </Widget>
         </div>
     </div>
-    <div v-for="object in schemaConfig">
-        {{ object }}
-    </div>
 </template>
 
 <script setup lang="ts">
-    import { useRoute } from 'nuxt/app';
-    import { Schema } from '~/types/report/schema';
-    import { useQueryStore } from '~/stores/query';
-    import { Report } from '~/types/report/report';
-    import apiService from '~/api';
-import { getSchema } from '~/api/schemas';
+    import { Schema } from '~/types/schema';
+    import { Report } from '~/types/report';
 
-    const queryStore = useQueryStore()
-    
-    // fetch the token from the url
-    const route = useRoute()
-    
-    // set the token to store so other pages can use
-    queryStore.setupToken(route.query.token ? route.query.token as string : '')
-    queryStore.setupBusinessId(route.query.businessId ? route.query.businessId as string : '') 
+    import { getSchema } from '~/api/schemas';
+    import { getReport } from '~/api/reports';
 
     // Fetch Schema config
     const schemaConfig = ref<Schema[]>([])
 
     schemaConfig.value = await getSchema()
 
-    console.log(schemaConfig.value)
-
     // Fetch reports config
     const reportConfig = ref<Report[]>()
+
+    reportConfig.value = await getReport()
 
 </script>
 
