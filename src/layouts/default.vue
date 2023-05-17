@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <SidebarTemplate v-bind:isExpanded="isExpanded"/>
+        <SidebarTemplate v-model="isExpanded"/>
         <v-main>
             <v-container>
                 <v-card elevation="20">
@@ -37,7 +37,7 @@
     queryStore.setupBusinessId(route.query.businessId ? route.query.businessId as string : '') 
 
     // reactive State
-    const isExpanded = ref(false)
+    const isExpanded = ref(true)
 
     const toggleMenu = () =>{
         isExpanded.value = !isExpanded.value

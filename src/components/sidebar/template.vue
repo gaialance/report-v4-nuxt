@@ -7,6 +7,8 @@ const props = defineProps({
   isExpanded: Boolean,
 })
 
+const isExpanded = ref(props.isExpanded)
+
 // Fetch reports config
 const reportConfig = ref<Report[]>([])
 
@@ -18,7 +20,7 @@ const editableList = reportConfig.value.filter((item)=>item.editable)
 </script>
 
 <template>
-      <v-navigation-drawer app v-model="props.isExpanded" class="navigation">   
+      <v-navigation-drawer app v-model="isExpanded" class="navigation">   
         <v-list>
           <v-list-item link class="orange-text">
             <v-list-item-title >New report</v-list-item-title>
