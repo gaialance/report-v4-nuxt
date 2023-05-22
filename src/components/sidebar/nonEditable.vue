@@ -1,8 +1,8 @@
 
 <template>
-    <v-list-group value="General">
-        <template #activator="{isOpen,props:data}">
-            <v-list-item v-bind="data" append-icon="">
+    <v-list-group value="general">
+        <template #activator="{isOpen,props}">
+            <v-list-item v-bind="props" append-icon="" active>
                 <v-list-item-title class="d-flex justify-space-between">
                     General
                     <img v-if="isOpen" class="icon" src="~/assets/icons/up-icon.svg" alt="mail" />
@@ -10,7 +10,7 @@
                 </v-list-item-title>
             </v-list-item>
         </template>
-        <v-list-item v-for="(item, index) in props.data" :key="`${item.name}_${index}`" link >
+        <v-list-item v-for="(item, index) in props.data" :key="`${item.name}_${index}`" link v-bind="props">
             <v-list-item-title>{{ item.name }}</v-list-item-title>
         </v-list-item>
     </v-list-group>
@@ -22,8 +22,6 @@
     const props = defineProps<{
         data: Report[]
     }>()
-
-    const isExpanded = ref(true)
 </script>
 
 <style lang="scss" scoped>

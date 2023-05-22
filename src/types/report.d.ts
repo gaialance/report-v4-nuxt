@@ -6,9 +6,7 @@ export interface Report {
   tiles: ReportTile[];
 }
 
-interface ReportRow { };
-
-interface ReportTile {
+export interface ReportTile {
   size: TileSize;
   widget: ReportWidget;
 }

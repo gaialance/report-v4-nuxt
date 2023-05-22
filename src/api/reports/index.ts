@@ -1,9 +1,10 @@
 import { FetchConfig, FetchType } from "~/plugins/axios.client"
-import { useQueryStore } from "~/stores/query"
+import { useQueryStore } from "~/stores/queries"
 import { Report } from "~/types/report"
 
-export const getReport = ():Promise<Report[]> => {
+// This Page get all the report list
 
+export const getReport = ():Promise<Report[]> => {
     const { businessId } = useQueryStore()
 
     if ( businessId ) {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { report } from "process"
 import { getReport } from "~/api/reports"
 
 import { Report } from "~/types/report"
@@ -17,11 +18,12 @@ reportConfig.value = await getReport()
 const nonEditableList = reportConfig.value.filter((item)=>!item.editable)
 const editableList = reportConfig.value.filter((item)=>item.editable)
 
+const defaultOpenGroup = ['general','custom']
 </script>
 
 <template>
-      <v-navigation-drawer app v-model="isExpanded" class="navigation">   
-        <v-list>
+      <v-navigation-drawer app v-model="isExpanded" class="navigation">
+        <v-list v-model:open="defaultOpenGroup">
           <v-list-item link class="orange-text">
             <v-list-item-title >New report</v-list-item-title>
           </v-list-item>

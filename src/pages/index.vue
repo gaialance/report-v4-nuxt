@@ -1,21 +1,20 @@
 <template>
-    <v-container class="container">
-        <v-row>
-            <v-col cols="8"> 
-                <h4 class="text-h4">
-                    Summary
-                </h4>
-            </v-col>
-            <v-col cols="4" align="right">
-                <Datepicker></Datepicker>
-            </v-col>
-        </v-row>
-    </v-container>
-    <v-container class="container">
-        <v-col :cols="1">
-            <v-chip class="chip">7 Selected</v-chip>
+    <v-row>
+        <v-col cols="6" lg="8"> 
+            <h4 class="text-h4">
+                {{currentReport?.name}}
+            </h4>
         </v-col>
-        <v-col :cols="11" class="d-flex justify-end ma-0 pa-0">
+        <v-col cols="6" lg="4" align="right">
+            <Datepicker></Datepicker>
+        </v-col>
+    </v-row>
+    <v-row>
+        <v-col cols="6" lg="2">
+            <v-select multiple chips :items="['harlo','test']" label="Restaurant / Warehouse">  
+            </v-select>
+        </v-col>
+        <v-col cols="6" lg="10" class="d-flex justify-end ma-0 pa-0">
             <div class="social-media">
                 <v-btn>
                     <img class="icon" src="~/assets/icons/mail-icon.svg" alt="mail" />
@@ -28,55 +27,40 @@
                 </v-btn>
             </div>
         </v-col>
-    </v-container>
-    <div class="grid pb-5">
-        <div v-for="item in list">
-            <Widget>
-                <v-card-title class="d-flex justify-space-between">
-                    {{ item }}
-                    <v-btn>
-                        <img class="icon" src="~/assets/icons/burger-menu.svg" alt="mail" />
-                    </v-btn>
-                </v-card-title>
-                <v-card-item>
-                    0
-                </v-card-item>
-            </Widget>
-        </div>
-    </div>
-    <div class="grid">
-        <div v-for="item in list2">
-            <Widget>
-                <v-card-title class="d-flex justify-space-between">
-                    {{ item }}
-                    <v-btn>
-                        <img class="icon" src="~/assets/icons/burger-menu.svg" alt="mail" />
-                    </v-btn>
-                </v-card-title>
-                <v-card-item>
-                    2
-                </v-card-item>
-            </Widget>
-        </div>
-    </div>
-</template>
+    </v-row>
+</template>     
 
 <script setup lang="ts">
-    import { Schema } from '~/types/schema';
-    import { Report } from '~/types/report';
-
     import { getSchema } from '~/api/schemas';
     import { getReport } from '~/api/reports';
 
-    // Fetch Schema config
-    const schemaConfig = ref<Schema[]>([])
+    // stores
+    import { useReportStore } from '~/stores/report';
+    import { useBusinessStore } from '~/stores/business';
+    import { useQueryStore } from '~/stores/queries'
 
-    schemaConfig.value = await getSchema()
+    // set token first
+    const queryStore = useQueryStore()
 
-    // Fetch reports config
-    const reportConfig = ref<Report[]>()
+    // fetch the token from the url
+    const route = useRoute()
 
-    reportConfig.value = await getReport()
+    // set the token to store so other pages can use
+    queryStore.setupToken(route.query.token ? route.query.token as string : '')
+    queryStore.setupBusinessId(route.query.businessId ? route.query.businessId as string : '')
+
+    const reportStore = useReportStore()
+
+    // fetch all the config files details
+    reportStore.addSchemasToStore(await getSchema())
+
+    reportStore.addToReportsToStore(await getReport())
+
+    reportStore.initializeReport()
+
+    const businessStore = useBusinessStore()
+
+    businessStore
 
 </script>
 
@@ -87,9 +71,10 @@
         padding: 0;
         align-items: center;
     }
-    .chip{
+
+    .social-media{
         display: flex;
-        flex: none;
+        align-items: center;
     }
     .social-media > *{
         width: 85px;

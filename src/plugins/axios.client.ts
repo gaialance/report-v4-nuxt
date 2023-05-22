@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { useQueryStore } from '~/stores/query'
+import { useQueryStore } from '~/stores/queries'
 
 export enum FetchType {
     Get,
@@ -62,8 +62,6 @@ export default defineNuxtPlugin(nuxtApp=>{
         const response: AxiosResponse<T> = await fetchResponse<T>(config);
         return new Promise<T>((resolve) => resolve(response.data));
     }
-
-
 
     return {
         provide:{

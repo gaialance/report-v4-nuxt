@@ -27,8 +27,6 @@ export const useQueryStore = defineStore(storeKey, () => {
   return { businessId, token, $reset, setupBusinessId, setupToken, setupState };
 });
 
-export const pinia = createPinia();
-
 interface QueryState {
   businessId: string;
   token: string;
