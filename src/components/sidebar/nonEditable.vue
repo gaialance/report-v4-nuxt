@@ -2,16 +2,16 @@
 <template>
     <v-list-group value="general">
         <template #activator="{isOpen,props}">
-            <v-list-item v-bind="props" append-icon="" active>
-                <v-list-item-title class="d-flex justify-space-between">
+            <v-list-item v-bind="props" append-icon="" active link>
+                <div class="d-flex justify-space-between">
                     General
                     <img v-if="isOpen" class="icon" src="~/assets/icons/up-icon.svg" alt="mail" />
                     <img v-else class="icon" src="~/assets/icons/down-icon.svg" alt="mail" />
-                </v-list-item-title>
+                </div>
             </v-list-item>
         </template>
         <v-list-item v-for="(item, index) in props.data" :key="`${item.name}_${index}`" link v-bind="props">
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
+            <v-list-item>{{ item.name }}</v-list-item>
         </v-list-item>
     </v-list-group>
 </template>

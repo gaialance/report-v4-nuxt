@@ -1,9 +1,10 @@
 <template>
     <v-list-group value="Custom">
         <template v-slot:activator="{ props }">
-            <v-list-item v-bind="props" @click="showList = !showList" append-icon="" active>
-                <v-list-item-title class="d-flex justify-space-between">
+            <v-list-item v-bind="props" @click="showList = !showList" append-icon="" active link>
+                <div class="d-flex justify-space-between">
                     Custom
+                    <!-- additional div just for easier grouping -->
                     <div>
                         <button class="btn" @click="toggleEditList">
                             <img v-if="allowDrag" class="icon" src="~/assets/icons/close-edit-icon.svg" alt="edit icon"/>
@@ -12,7 +13,7 @@
                         <img v-if="showList" class="icon" src="~/assets/icons/up-icon.svg" alt="up arrow" />
                         <img v-else class="icon" src="~/assets/icons/down-icon.svg" alt="down arrow" />
                     </div>
-                </v-list-item-title>
+                </div>
             </v-list-item>
         </template>
         <draggable :list="tempData" @start="dragging=true" @end="dragging=false" item-key="id" :disabled="!allowDrag">
@@ -48,6 +49,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .container{
+        padding: 0px;
+        margin: 0px;
+    }
     .icon{
         height: 20px;
         width: 20px;

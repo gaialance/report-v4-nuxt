@@ -5,17 +5,6 @@
 </template>
 
 <style lang="scss">
-
-  .orange-text{
-      color:#EE8434;
-  }
-  
-  .orange-text:hover{
-      color: white;
-      background: #EE8434;
-      cursor: pointer;
-  }
-
   * {
     margin: 0;
     padding: 0;
@@ -41,6 +30,16 @@
   main {
     flex: 1 1 0;
     padding: 2rem;
+  }
+
+  .orange-text{
+      color:#EE8434;
+  }
+  
+  .orange-text:hover{
+      color: white;
+      background: #EE8434;
+      cursor: pointer;
   }
 
   .skeleton{
