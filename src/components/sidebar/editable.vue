@@ -16,11 +16,11 @@
                 </div>
             </v-list-item>
         </template>
-        <draggable :list="tempData" @start="dragging=true" @end="dragging=false" item-key="id" :disabled="!allowDrag">
+        <draggable :list="tempData" item-key="id" :disabled="!allowDrag">
             <template #item="{element}">
-                <v-list-item link>
+                <v-list-item link :active="currentReport?.name === element.name">
                     <v-list-item-title>
-                        <img v-if="allowDrag" class="icon" src="~/assets/icons/dragable-icon.svg" alt="draggable" />
+                        <img v-if="allowDrag" :class="`icon`"  src="~/assets/icons/dragable-icon.svg" alt="draggable" />
                         {{ element.name }}
                     </v-list-item-title>
                 </v-list-item>
@@ -30,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+    import { storeToRefs } from "pinia"
+    import { useReportStore } from "~/stores/report"
     import { Report } from "~/types/report"
     
     const props = defineProps<{
@@ -40,12 +42,17 @@
 
     const showList = ref(true)
     const allowDrag = ref(false)
-    const dragging = ref(false)
 
     const toggleEditList = () =>{
         event?.stopPropagation()
         allowDrag.value = !allowDrag.value
     }
+
+    const reportStore = useReportStore()
+
+    const { currentReport  } = storeToRefs(reportStore)
+
+    const { updateCurrentReportId } = reportStore
 </script>
 
 <style lang="scss" scoped>

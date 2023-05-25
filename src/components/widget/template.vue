@@ -2,18 +2,19 @@
     <v-card :elevation="10" :class="`${isLoading ? 'skeleton' : ''}`" :width="width" :height="height">
         <div v-if="isLoading"></div>
         <div v-else>
-
-        </div>
-        <div>
-            <v-toolbar class="d-flex justify-space-between toolbar">
-                <v-toolbar-title >
-                    {{ title }}
-                </v-toolbar-title>
-                <v-btn :min-width="10" :min-height="20">
-                    <img class="icon" src="~/assets/icons/menu-icon.svg" alt="mail" />
-                </v-btn>
-            </v-toolbar>
-            <v-card-text>0</v-card-text>
+            <div v-if="widgetType === 'SCORECARD'">
+                <WidgetScorecard>
+                    <template v-slot:title>
+                        {{ title }}
+                    </template>
+                    <template v-slot:content>
+                        {{ 0 }}
+                    </template>
+                </WidgetScorecard>
+            </div>
+            <div v-if="widgetType === 'BARCHART'">
+                test
+            </div>
         </div>
     </v-card>
 </template>
@@ -45,4 +46,8 @@ setTimeout(()=>{
 </script>
 
 <style lang="scss" scoped>
+    .icon{
+        height: 20px;
+        width: 20px;
+    }
 </style>

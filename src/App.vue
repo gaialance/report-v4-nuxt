@@ -11,10 +11,6 @@
     box-sizing: border-box;
   }
 
-  body {
-    background: var(--white-color);
-  }
-
   button {
     cursor: pointer;
     appearance: none;
