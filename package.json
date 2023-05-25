@@ -9,19 +9,24 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
     "@types/luxon": "^3.3.0",
     "@types/node": "^18",
-    "nuxt": "^3.4.3"
+    "eslint": "^8.41.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "nuxt": "^3.4.3",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "@nuxt/types": "^2.16.3",
     "@pinia/nuxt": "^0.4.10",
     "@vuepic/vue-datepicker": "^5.0.1",
-    "query-engine-dart": "../monorepo-merged/dart/packages/query_engine/build/npm",
-    "report-v4-dart": "../monorepo-merged/dart/packages/report_v4/build/npm", 
     "axios": "^1.4.0",
     "luxon": "^3.3.0",
     "pinia": "^2.0.36",
+    "query-engine-dart": "../monorepo-merged/dart/packages/query_engine/build/npm",
+    "report-v4-dart": "../monorepo-merged/dart/packages/report_v4/build/npm",
     "sass": "^1.62.1",
     "vuedraggable": "^4.1.0",
     "vuetify": "^3.2.3"
