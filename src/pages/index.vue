@@ -1,6 +1,6 @@
 <template>
     <div class="grid">
-        <div v-for="(item, index) in currentReport?.tiles" :key="`${currentReport?.id}-${index}`" :class="item.widget.type === 'SPACER' ? 'grid-end' : ''">
+        <div v-for="(item, index) in currentReport?.tiles" :key="`${currentReport?.id}-${index}`" :class="`${item.widget.type === 'SPACER' ? 'grid-end' : ''} ${item.widget.type === 'BARCHART' ? 'grid-table' : ''}`">
             <WidgetTemplate v-bind:reportTiles="item" />
         </div>
     </div>
@@ -13,10 +13,6 @@
     const reportStore = useReportStore()
 
     const { currentReport } = storeToRefs(reportStore)
-
-    watch(currentReport,()=>{
-        console.log(currentReport.value)
-    })
 </script>
 
 <style lang="scss" scoped>
@@ -29,5 +25,9 @@
 
     .grid-end{
         grid-column-end: -1;
+    }
+
+    .grid-table{
+        grid-column: span 2;
     }
 </style>

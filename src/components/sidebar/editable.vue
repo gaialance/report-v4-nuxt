@@ -16,9 +16,9 @@
                 </div>
             </v-list-item>
         </template>
-        <draggable :list="tempData" item-key="id" :disabled="!allowDrag">
-            <template #item="{element}">
-                <v-list-item link :active="currentReport?.name === element.name">
+        <draggable v-model:list="tempData" item-key="id" :disabled="!allowDrag">
+            <template v-slot:item="{element}">
+                <v-list-item link :active="currentReport?.id === element.id" @click="updateCurrentReportId(element.id)">
                     <v-list-item-title>
                         <img v-if="allowDrag" :class="`icon`"  src="~/assets/icons/dragable-icon.svg" alt="draggable" />
                         {{ element.name }}

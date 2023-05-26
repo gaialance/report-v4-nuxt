@@ -2,6 +2,7 @@
     <v-card :elevation="10" :class="`${isLoading ? 'skeleton' : ''}`" :width="width" :height="height">
         <div v-if="isLoading"></div>
         <div v-else>
+            {{ widgetType }}
             <div v-if="widgetType === 'SCORECARD'">
                 <WidgetScorecard>
                     <template v-slot:title>
@@ -11,6 +12,23 @@
                         {{ 0 }}
                     </template>
                 </WidgetScorecard>
+            </div>
+            <div v-if="widgetType === 'TABLE'">
+                <WidgetTablecard>
+                    <template v-slot:title>
+                        {{ title }}
+                    </template>
+                    <template v-slot:content>
+                        <table>
+                            <tr>
+                                <th>
+                                    {{widgetConfig}}
+                                </th>
+                                <th> test</th>
+                            </tr>
+                        </table>
+                    </template>
+                </WidgetTablecard>
             </div>
             <div v-if="widgetType === 'BARCHART'">
                 test

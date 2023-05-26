@@ -12,10 +12,6 @@
     </v-card-text>
 </template>
 
-<script>
-
-</script>
-
 <style>
     .toolbar{
         background: #36454F;

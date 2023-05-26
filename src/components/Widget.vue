@@ -1,9 +1,6 @@
 <template>
     <v-card :elevation="10" :class="`${isLoading ? 'skeleton' : ''}`" :width="width" :height="height">
         <div v-if="isLoading"></div>
-        <div v-else>
-
-        </div>
         <div>
             <v-toolbar class="d-flex justify-space-between toolbar">
                 <v-toolbar-title >

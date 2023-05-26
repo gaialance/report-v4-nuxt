@@ -11,7 +11,7 @@
             </v-list-item>
         </template>
         <v-list-item v-for="(item, index) in props.data" :key="`${item.name}_${index}`" link v-bind="props">
-            <v-list-item :active="currentReport?.name === item.name" @click="updateCurrentReportId(item.id)">
+            <v-list-item :active="currentReport?.id === item.id" @click="updateCurrentReportId(item.id)">
                 {{ item.name }}
             </v-list-item>
         </v-list-item>

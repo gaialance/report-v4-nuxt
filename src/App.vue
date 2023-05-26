@@ -2,6 +2,14 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <NuxtErrorBoundary>
+      <template #error="{ error, clearError }">
+        You can display the error locally here: {{ error }}
+        <button @click="clearError">
+          This will clear the error.
+        </button>
+      </template>
+    </NuxtErrorBoundary>
 </template>
 
 <style lang="scss">
@@ -28,12 +36,22 @@
     padding: 2rem;
   }
 
+  .orange-btn{
+    background: #EE8434;
+    color: #F5F5F5;
+  }
+
+  .orange-btn:hover{
+    background: black;
+    color: #EE8434;
+  }
+
   .orange-text{
       color:#EE8434;
   }
   
   .orange-text:hover{
-      color: white;
+      color: #F5F5F5;
       background: #EE8434;
       cursor: pointer;
   }

@@ -60,7 +60,8 @@ export default defineNuxtPlugin(nuxtApp=>{
 
     const fetch = async <T>(config: FetchConfig): Promise<T> => {
         const response: AxiosResponse<T> = await fetchResponse<T>(config);
-        return new Promise<T>((resolve) => resolve(response.data));
+
+        return new Promise<T>((resolve) => resolve(response.data))
     }
 
     return {
