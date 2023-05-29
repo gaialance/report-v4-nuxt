@@ -1,8 +1,12 @@
 <template>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+useNuxtApp()
+</script>
 
 <style lang="scss">
   * {
@@ -35,7 +39,7 @@
   .orange-text{
       color:#EE8434;
   }
-  
+
   .orange-text:hover{
       color: white;
       background: #EE8434;
@@ -85,7 +89,3 @@
     --dp-highlight-color: #212121 !important;
   }
 </style>
-
-<script setup lang="ts">
-  const nuxtApp = useNuxtApp()
-</script>

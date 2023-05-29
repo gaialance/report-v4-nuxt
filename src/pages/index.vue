@@ -1,23 +1,21 @@
 <template>
-    <div class="grid">
-        <div v-for="(item, index) in currentReport?.tiles" :key="index">
-            <template v-if="item.widget.type === 'SPACER'">
-                
-            </template>
-            <template v-else>
-                <Widget :reportTiles="item" />
-            </template>
-        </div>
+  <div class="grid">
+    <div v-for="(item, index) in currentReport?.tiles" :key="index">
+      <template v-if="item.widget.type === 'SPACER'" />
+      <template v-else>
+        <Widget :report-tiles="item" />
+      </template>
     </div>
-</template>     
+  </div>
+</template>
 
 <script setup lang="ts">
-    import { useReportStore } from "~/stores/report";
-    import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia'
+import { useReportStore } from '~/stores/report'
 
-    const reportStore = useReportStore()
+const reportStore = useReportStore()
 
-    const { currentReport } = storeToRefs(reportStore)
+const { currentReport } = storeToRefs(reportStore)
 </script>
 
 <style lang="scss" scoped>

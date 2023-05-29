@@ -1,6 +1,6 @@
 import { ReportTile } from "./report";
 
-interface Widget {
+export interface Widget {
     tile: ReportTile;
     data : Any
 }

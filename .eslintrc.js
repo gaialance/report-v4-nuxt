@@ -17,5 +17,9 @@ module.exports = {
     project: "./.nuxt/tsconfig.json"
   },
   ignorePatterns: ['.eslintrc.js', 'dist/**'],
+  rules: {
+    'vue/multi-word-component-names': 'off',
+    'no-unused-vars': 'off'
+  }
 }
   
