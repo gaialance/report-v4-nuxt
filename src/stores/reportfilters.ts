@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { defineStore } from 'pinia'
-import { Business, Restaurant, Warehouse } from '~/types/business'
+import { Restaurant, Warehouse } from '~/types/business'
+
 const storeKey = 'report-filter'
 
 export const useReportFilterStore = defineStore(storeKey, () => {

@@ -1,16 +1,12 @@
 <template>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-    <NuxtErrorBoundary>
-      <template #error="{ error, clearError }">
-        You can display the error locally here: {{ error }}
-        <button @click="clearError">
-          This will clear the error.
-        </button>
-      </template>
-    </NuxtErrorBoundary>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+useNuxtApp()
+</script>
 
 <style lang="scss">
   * {
@@ -49,7 +45,7 @@
   .orange-text{
       color:#EE8434;
   }
-  
+
   .orange-text:hover{
       color: #F5F5F5;
       background: #EE8434;
@@ -99,7 +95,3 @@
     --dp-highlight-color: #212121 !important;
   }
 </style>
-
-<script setup lang="ts">
-  const nuxtApp = useNuxtApp()
-</script>

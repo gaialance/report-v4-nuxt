@@ -7,12 +7,19 @@ module.exports = {
     '@nuxtjs/eslint-config-typescript',
     'plugin:nuxt/recommended',
     'eslint:recommended',
+    "./.nuxt/.eslint.gloabls.json"
   ],
   parserOptions: {
     project: '**/tsconfig.json',
     sourceType: 'module',
-    ecmaVersion: 2015
+    ecmaVersion: 2015,
+    extraFileExtensions: ['.vue'],
+    project: "./.nuxt/tsconfig.json"
   },
   ignorePatterns: ['.eslintrc.js', 'dist/**'],
+  rules: {
+    'vue/multi-word-component-names': 'off',
+    'no-unused-vars': 'off'
+  }
 }
   
