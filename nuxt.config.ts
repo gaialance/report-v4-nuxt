@@ -11,12 +11,8 @@ export default defineNuxtConfig({
   },
   modules: [
     '@pinia/nuxt',
-<<<<<<< HEAD
-    '@nuxtjs/eslint-module'
-=======
     '@nuxtjs/eslint-module',
     './auto-import-eslint.ts'
->>>>>>> f9874f37fec76ae03bc670f0c9f54968b5ffe3c4
   ],
   pinia: {
     autoImports: [

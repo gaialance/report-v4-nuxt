@@ -19,14 +19,7 @@
             {{ title }}
           </template>
           <template #content>
-            <table>
-              <tr>
-                <th>
-                  {{ widgetConfig }}
-                </th>
-                <th> test</th>
-              </tr>
-            </table>
+            {{ 0 }}
           </template>
         </WidgetTablecard>
       </div>
@@ -48,6 +41,7 @@ const props = defineProps<{
 }>()
 
 const width = computed(() => (screen.width / 12) * props.reportTiles.size.width)
+
 const height = computed(() => (screen.width / 12) * props.reportTiles.size.height)
 
 const title = computed(() => props.reportTiles.widget.title)

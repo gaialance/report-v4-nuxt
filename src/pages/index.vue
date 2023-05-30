@@ -1,8 +1,14 @@
 <template>
   <div class="d-flex flex-wrap">
-    <div v-for="(item) in currentReport?.tiles" :key="item.widget.title" :class="`v-col-${item.size.width}`">
+    <v-col
+      v-for="(item) in currentReport?.tiles"
+      :key="`${currentReport?.id}-${item.widget.title}`"
+      class="d-flex"
+      :lg="item.size.width"
+      :sm="item.size.width*3"
+    >
       <WidgetTemplate :report-tiles="item" />
-    </div>
+    </v-col>
   </div>
 </template>
 

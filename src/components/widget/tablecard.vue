@@ -1,11 +1,17 @@
 <template>
-  <v-card-title class="d-flex flex-end">
-    <slot name="title" />
-    <WidgetExportmenu />
-  </v-card-title>
-  <v-card-text>
-    <slot name="content" />
-  </v-card-text>
+  <table class="w-100">
+    <thead>
+      <tr>
+        <th>
+          <slot name="title" />
+          <WidgetExportmenu />
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <slot name="content" />
+    </tbody>
+  </table>
 </template>
 
   <style>
