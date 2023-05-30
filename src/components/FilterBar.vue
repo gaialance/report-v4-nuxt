@@ -70,9 +70,7 @@ reportStore.addToReportsToStore(await getReport())
 
 reportStore.initializeReport()
 
-const { currentReport } = reportStore
-
-console.log('this is in filter bar', currentReport)
+const { currentReport } = storeToRefs(reportStore)
 
 const reportFilterStore = useReportFilterStore()
 

@@ -1,42 +1,41 @@
 <template>
-    <v-card :elevation="10" :class="`${isLoading ? 'skeleton' : ''}`" :width="width" :height="height">
-        <div v-if="isLoading"></div>
-        <div v-else>
-            {{ widgetType }}
-            <div v-if="widgetType === 'SCORECARD'">
-                <WidgetScorecard>
-                    <template v-slot:title>
-                        {{ title }}
-                    </template>
-                    <template v-slot:content>
-                        {{ 0 }}
-                    </template>
-                </WidgetScorecard>
-            </div>
-            <div v-if="widgetType === 'TABLE'">
-                <WidgetTablecard>
-                    <template v-slot:title>
-                        {{ title }}
-                    </template>
-                    <template v-slot:content>
-                        <table>
-                            <tr>
-                                <th>
-                                    {{widgetConfig}}
-                                </th>
-                                <th> test</th>
-                            </tr>
-                        </table>
-                    </template>
-                </WidgetTablecard>
-            </div>
-            <div v-if="widgetType === 'BARCHART'">
-                test
-            </div>
-        </div>
-    </v-card>
+  <v-card :elevation="10" :class="`${isLoading ? 'skeleton' : ''}`" :width="width" :height="height">
+    <div v-if="isLoading" />
+    <div v-else>
+      {{ widgetType }}
+      <div v-if="widgetType === 'SCORECARD'">
+        <WidgetScorecard>
+          <template #title>
+            {{ title }}
+          </template>
+          <template #content>
+            {{ 0 }}
+          </template>
+        </WidgetScorecard>
+      </div>
+      <div v-if="widgetType === 'TABLE'">
+        <WidgetTablecard>
+          <template #title>
+            {{ title }}
+          </template>
+          <template #content>
+            <table>
+              <tr>
+                <th>
+                  {{ widgetConfig }}
+                </th>
+                <th> test</th>
+              </tr>
+            </table>
+          </template>
+        </WidgetTablecard>
+      </div>
+      <div v-if="widgetType === 'BARCHART'">
+        test
+      </div>
+    </div>
+  </v-card>
 </template>
-
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -48,24 +47,25 @@ const props = defineProps<{
     reportTiles: ReportTile
 }>()
 
-const width = props.reportTiles.size.width * 150
-const height = props.reportTiles.size.height * 200
+const width = computed(() => (screen.width / 12) * props.reportTiles.size.width)
+const height = computed(() => (screen.width / 12) * props.reportTiles.size.height)
 
-const title = props.reportTiles.widget.title
+const title = computed(() => props.reportTiles.widget.title)
 
-const widgetType = props.reportTiles.widget.type
+const widgetType = computed(() => props.reportTiles.widget.type)
 
-const widgetConfig = props.reportTiles.widget.config
+const widgetConfig = computed(() => props.reportTiles.widget.config)
 
-setTimeout(()=>{
-    isLoading.value = false
-},3 * 1000)
+setTimeout(() => {
+  isLoading.value = false
+}, 3 * 1000)
 
 </script>
 
 <style lang="scss" scoped>
-    .icon{
-        height: 20px;
-        width: 20px;
-    }
+
+  .icon{
+      height: 20px;
+      width: 20px;
+  }
 </style>

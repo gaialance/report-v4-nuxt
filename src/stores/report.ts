@@ -38,6 +38,18 @@ export const useReportStore = defineStore(storeKey, () => {
     }
   }
 
+  const updateCurrentReportId = (newReportId : string) => {
+    // find in the report list
+    const foundReportId = reports.value.findIndex((report) => {
+      return report.id === newReportId
+    })
+
+    // if found assign it
+    if (foundReportId !== -1) {
+      currentReportId.value = newReportId
+    }
+  }
+
   return {
     reports,
     schemas,
@@ -45,6 +57,7 @@ export const useReportStore = defineStore(storeKey, () => {
     currentReportId,
     addToReportsToStore,
     addSchemasToStore,
-    initializeReport
+    initializeReport,
+    updateCurrentReportId
   }
 })

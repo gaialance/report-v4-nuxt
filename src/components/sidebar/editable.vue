@@ -1,7 +1,7 @@
 <template>
   <v-list-group value="Custom">
-    <template #activator="{ props }">
-      <v-list-item v-bind="props" append-icon="" active link @click="showList = !showList">
+    <template #activator="{ props:activatorValue }">
+      <v-list-item v-bind="activatorValue" append-icon="" active link @click="showList = !showList">
         <div class="d-flex justify-space-between">
           Custom
           <!-- additional div just for easier grouping -->
@@ -16,9 +16,9 @@
         </div>
       </v-list-item>
     </template>
-    <draggable :list="tempData" item-key="id" :disabled="!allowDrag" @start="dragging=true" @end="dragging=false">
-      <template #item="{element}">
-        <v-list-item link>
+    <draggable :list="tempData" item-key="id" :disabled="!allowDrag">
+      <template #item="{element,index}">
+        <v-list-item link :active="currentReport?.id === element.id" @click="updateCurrentReportId(tempData[index].id)">
           <v-list-item-title>
             <img v-if="allowDrag" class="icon" src="~/assets/icons/dragable-icon.svg" alt="draggable">
             {{ element.name }}
@@ -30,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useReportStore } from '~/stores/report'
 import { Report } from '~/types/report'
 
 const props = defineProps<{
@@ -40,7 +42,12 @@ const tempData = ref(props.data)
 
 const showList = ref(true)
 const allowDrag = ref(false)
-const dragging = ref(false)
+
+const reportStore = useReportStore()
+
+const { currentReport } = storeToRefs(reportStore)
+
+const { updateCurrentReportId } = reportStore
 
 const toggleEditList = () => {
   event?.stopPropagation()
